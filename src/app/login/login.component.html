@@ -1,0 +1,41 @@
+<div class="login-page">
+  <p-toast />
+  <div class="form">
+    <div class="login">
+      <div>
+        <img src="../../assets/images/adv-logo.png" width="150px">
+      </div>
+      <div class="login-header mt-4">
+        <h3 style="color: #778899;">ALERT</h3>
+        <p>Please enter your credentials to sign in.</p>
+
+        <p-messages severity="error" *ngIf="message">
+          <ng-template pTemplate>
+            <i class="pi pi-exclamation-triangle" style="font-size: 2rem"></i>
+            <div class="ml-2">Looks like you don't have enough permissions to view some content! </div>
+          </ng-template>
+        </p-messages>
+      </div>
+    </div>
+    <form #loginForm="ngForm" class="login-form">
+      <div class="field">
+        <input class="mt-3 w-full" type="text" pInputText required placeholder="Username" name="username"
+          [(ngModel)]="username" #userNameFIeld="ngModel">
+        <small class="p-error" *ngIf="userNameFIeld.invalid && userNameFIeld.touched">
+          User Name is required.
+        </small>
+      </div>
+
+      <div class="field">
+        <input class="mt-3 w-full" type="password" pInputText required placeholder="password" name="password"
+          [(ngModel)]="password" #passwordField="ngModel">
+        <small class="p-error" *ngIf="passwordField.invalid && passwordField.touched">
+          password is required.
+        </small>
+      </div>
+
+
+      <button class="p-2 text-centre" pButton type="button" (click)="LoginAction(loginForm)">Sign in</button>
+    </form>
+  </div>
+</div>

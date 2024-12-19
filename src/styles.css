@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/themes/lara-light-purple/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+@layer bootstrap, primeng;
+
+html,
+body {
+    height: 100%;
+}
+.p-dialog-content .field{
+    margin-bottom: 20px;
+}
+html {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-tab-body {
+    padding: 0.5rem !important;
+}
+
+body .ui-widget {
+    font-size: 10pt !important;
+}
+
+.ui-button:focus,
+.ui-button:enabled:focus {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}
+
+button:focus,
+button:active:focus,
+button.active:focus {
+    outline: none !important;
+    outline-style: none !important;
+}
+
+.mat-tab-label-active {
+
+    opacity: 0.8 !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+}
+
+body .ui-table .ui-table-thead>tr>th {
+    font-size: 9pt !important;
+}
+
+body .ui-table .ui-table-tbody>tr>td {
+    border: 1px solid #ebebeb !important;
+    font-size: 8.5pt !important;
+    padding: .25em .5em !important
+}
+
+.ui-table-caption {
+    background-color: #fff !important;
+}
+
+.ui-dropdown {
+    width: 100% !important;
+}
+
+.ui-dropdown label {
+    text-align: left !important;
+}
+
+.f-width {
+    width: 100% !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+    border-top: none !important;
+}
+
+.jb-filter {
+    float: right;
+}
+
+label {
+    font-size: 12pt !important;
+}
+
+.mt-4-cs {
+    margin-top: 2rem !important;
+}
+
+.mat-toolbar-multiple-rows {
+    min-height: 54px !important;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: 54px !important;
+}
+
+
+.add-new-button {
+    background-color: rgb(14, 192, 139);
+}
+
+.edit-button {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(30, 209, 14);
+    border-radius: 50px;
+    border: 1px solid rgb(30, 209, 14);
+}
+.delete-button {
+    background-color: rgba(255, 255, 255, 0);
+    color: red;
+    border-radius: 50px;
+    border: 1px solid red;
+
+}
+
+.edit-button:hover {
+    background-color: rgb(0, 255, 55);
+    color: rgb(255, 255, 255);
+    border-radius: 50px;
+    border: 1px solid rgb(30, 209, 14);
+}
+.delete-button:hover {
+    background-color: rgb(255, 0, 0);
+    color: red;
+    border-radius: 50px;
+    border: 1px solid red;
+}
+
+.table-button {
+    width: 2rem !important;
+    height: 2rem !important;
+    border: none;
+}
+.text-green-500{
+    color: green;
+}
+
+.w-full{
+    width: 100%;
+}
+.text-centre{
+    display: flex;
+    justify-content: center;
+}

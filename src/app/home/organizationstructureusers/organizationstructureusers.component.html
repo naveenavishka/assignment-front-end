@@ -1,0 +1,31 @@
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">assignment</mat-icon>&nbsp;
+            Cluster users
+        </ng-template>
+        <ng-template matTabContent>
+            <app-clusterusers [clusterList]="clusterList"></app-clusterusers>
+        </ng-template>
+    </mat-tab>
+    <mat-tab >
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">assignment</mat-icon>&nbsp;
+            SBU users
+        </ng-template>
+        <ng-template matTabContent>
+            <app-sbuusers [clusterList]="clusterList"></app-sbuusers>
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">assignment</mat-icon>&nbsp;
+            Sites users
+        </ng-template>
+        <ng-template matTabContent>
+            <app-sitesusers [clusterList]="clusterList"></app-sitesusers>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+

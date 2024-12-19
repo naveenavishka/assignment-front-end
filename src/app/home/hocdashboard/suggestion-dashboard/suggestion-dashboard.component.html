@@ -1,0 +1,152 @@
+<p-card style="padding: 20px;">
+    <div class="col-md-12">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Cluster</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="clusterDataList" name="varClusterCode"
+                                [(ngModel)]="varClusterCode" (ngModelChange)="onClusterChange()"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>SBU</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="sbuDataList" name="varSBUCode"
+                                [(ngModel)]="varSBUCode" (ngModelChange)="onSBUChange()"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Site</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="siteDataList" name="varSiteCode"
+                                [(ngModel)]="varSiteCode" placeholder="Select a Site"
+                                (ngModelChange)="onSiteChange()"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>From Date</label><br/>
+                        <p-calendar appendTo="body" [(ngModel)]="filterDT.dteFromDate"
+                            [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div class="col-md-6">
+                        <label>To Date</label><br/>
+                        <p-calendar appendTo="body" [(ngModel)]="filterDT.dteToDate"
+                            [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 mt-2">
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <button pButton type="button" class="ui-button-raised ui-button-success" icon="pi pi-search"
+                            iconPos="left" label="Search" (click)="onSearchByDate()"></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button pButton type="button" class="ui-button-raised ui-button-danger" icon="pi pi-times"
+                            iconPos="left" label="Clear" (click)="onClearSearch()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>
+
+
+
+        <p-card>
+            <p-table [loading]="loading" #suggestionTable exportFilename="Suggestion-Data" [columns]="cols" [value]="SuggestionActDT"
+                [paginator]="true" [responsive]="true" [rows]="10" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div style="display: flex;    justify-content: space-between;">
+                        <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Export"
+                            (click)="incidentTable.exportCSV()" style="float:left"></button>
+                        <p-dropdown class="jb-filter" [options]="jobTypes" [(ngModel)]="jobType"
+                            (onChange)="onJobTypeChanged()"></p-dropdown>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th></th>
+                        <th *ngFor="let col of columns">{{col.header}}</th>
+                    </tr>
+                    <tr >
+                        <th></th>
+                        <!-- <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text" (input)="suggestionTable.filter($event.target.value, 'varGroupName', 'contains')">
+                        </th> -->
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'varSBUName', 'contains')">
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'varSiteName', 'contains')">
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'varSuggestionDes', 'contains')">
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'dteSgDate', 'contains')">
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'varActionType', 'contains')">
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                                (input)="suggestionTable.filter($event.target.value, 'varActionComment', 'contains')">
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-suggestion>
+                    <tr [ngStyle]="{'background-color': suggestion.bitClose === 'True' ? 'rgb(239 255 238)' : ''}">
+                        <td>
+                            <button pButton pTooltip="View Images" type="button"
+                                class="ui-button-raised ui-button-success" icon="pi pi-images" iconPos="left"
+                                (click)="onViewSuggestionImages(suggestion.numSuggestionID)"></button>
+                        </td>
+                        <!-- <td>{{suggestion.varGroupName}}</td> -->
+                        <td>{{suggestion.varSBUName}}</td>
+                        <td>{{suggestion.varSiteName}}</td>
+                        <td>{{suggestion.varSuggestionDes}}</td>
+                        <td>{{suggestion.dteSgDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>
+                            <p-tag [severity]="suggestion.bitClose =='True' ? 'success' : 'error'"
+                                [value]="suggestion.bitClose =='True' ? 'Closed' : 'Opened'"></p-tag>
+                        </td>
+                        <td>{{suggestion.varActionComment}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="columns.length">
+                            No records found
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+
+
+<p-dialog modal="true" appendTo="body" [positionTop]="50" [contentStyle]="{'max-height':'80vh'}"
+    header="Suggestion Image Attachments" [(visible)]="showImageModal" [style]="{ width: '700px' }">
+    <div class="col-md-12">
+        <h5 *ngIf="SuggestionImgDT.length == 0">No Attachments Available.</h5>
+        <table>
+            <tr *ngFor="let image of SuggestionImgDT">
+                <img [src]="image.imageUrl">
+            </tr>
+        </table>
+    </div>
+</p-dialog>

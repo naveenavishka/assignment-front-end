@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>A L E R T</span>
+
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <div class="row align-items-center">
+        <p class="hf-11 mt-2">{{userDisplayName}}</p>
+        <button mat-button [matMenuTriggerFor]="menu2">
+          <mat-icon>person_outline</mat-icon>
+        </button>
+
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item (click)="onSignout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Sign Out
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+

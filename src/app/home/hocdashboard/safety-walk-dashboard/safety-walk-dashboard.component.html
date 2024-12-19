@@ -1,0 +1,221 @@
+<p-card style="padding: 20px;">
+    <div class="col-md-12">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Cluster</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="clusterDataList" name="varClusterCode"
+                                [(ngModel)]="varClusterCode" (ngModelChange)="onClusterChange()"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>SBU</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="sbuDataList" name="varSBUCode"
+                                [(ngModel)]="varSBUCode" (ngModelChange)="onSBUChange()"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Site</label>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="siteDataList" name="varSiteCode"
+                                [(ngModel)]="varSiteCode" placeholder="Select a Site"
+                                (ngModelChange)="onSiteChange()"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>From Date</label><br />
+                        <p-calendar appendTo="body" [(ngModel)]="filterDT.dteFromDate"
+                            [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div class="col-md-6">
+                        <label>To Date</label><br />
+                        <p-calendar appendTo="body" [(ngModel)]="filterDT.dteToDate"
+                            [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 mt-2">
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <button pButton type="button" class="ui-button-raised ui-button-success" icon="pi pi-search"
+                            iconPos="left" label="Search" (click)="onSearchByDate()"></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button pButton type="button" class="ui-button-raised ui-button-danger" icon="pi pi-times"
+                            iconPos="left" label="Clear" (click)="onClearSearch()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>
+
+
+
+<mat-card>
+    <p-table [loading]="loading" #safetyWalkTable exportFilename="Safety_Walk-Data" [columns]="cols" [value]="SafetyWalkDT"
+        [paginator]="true" [scrollable]="true"  [rows]="rowsPerPage" [showCurrentPageReport]="true" [paginator]="true" (onPage)="onPageChange($event)" >
+        <ng-template pTemplate="caption">
+            <div style="display: flex;    justify-content: space-between;">
+                <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Export"
+                    (click)="incidentTable.exportCSV()" style="float:left"></button>
+                <p-dropdown class="jb-filter" [options]="jobTypes" [(ngModel)]="jobType"
+                    (onChange)="onJobTypeChanged()"></p-dropdown>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+
+            <tr>
+                <th style="width: 100px"></th>
+                <th style="min-width: 200px" *ngFor="let col of columns">{{col.header}}</th>
+            </tr>
+            <tr>
+                <th style="width: 100px"></th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varSBUName', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varSiteName', 'contains')">
+                </th>
+                <!-- <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text" (input)="incidentTable.filter($event.target.value, 'varCategoryName', 'contains')"> 
+                        </th>
+                        <th>
+                            <input style="width: 100%; font-size: 9pt;" pInputText type="text" (input)="incidentTable.filter($event.target.value, 'varCategoryTypeDes', 'contains')">
+                        </th> -->
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varObserverdEmployeeName', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'numNoofYearsADV', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varObservedJob', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varSpecialObservation', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varIsRoutine', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ1Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ2Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ3Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ4Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ5Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ6Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ7Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ8Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ9Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varQ10Status', 'contains')">
+                </th>
+                <th style="width: 200px">
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'dteCreateOn', 'contains')">
+                </th>
+                <th>
+                    <input style="width: 100%; font-size: 9pt;" pInputText type="text"
+                        (input)="safetyWalkTable.filter($event.target.value, 'varCreateBy', 'contains')">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-walk>
+            <tr>
+                <td style="width: 100px">
+                    <button pButton pTooltip="View Images" type="button" class="ui-button-raised ui-button-info"
+                        icon="pi pi-images" iconPos="left"
+                        (click)="onViewImages(walk.varCategoryTypeDes, walk.numSafetyWalkID)"></button>&nbsp;
+                    <button *ngIf="walk.bitClose == 'False'" pButton pTooltip="Close Job" type="button"
+                        class="ui-button-raised ui-button-success" icon="pi pi-check" iconPos="left"
+                        (click)="onCloseActivity(walk.numSafetyWalkID)"></button>
+                </td>
+                <td style="width: 200px">{{walk.varSBUName}}</td>
+                <td style="width: 200px">{{walk.varSiteName}}</td>
+                <!-- <td>{{incident.varCategoryName}}</td>
+                        <td>{{incident.varCategoryTypeDes}}</td> -->
+                <td style="width: 200px">{{walk.varObserverdEmployeeName}}</td>
+                <td style="width: 200px">{{walk.numNoofYearsADV == 0 ? '' : walk.numNoofYearsADV + ' Years'}}</td>
+                <td style="width: 200px">{{walk.varObservedJob}}</td>
+                <td style="width: 200px">{{walk.varSpecialObservation}}</td>
+                <td style="width: 200px">{{walk.varIsRoutine}}</td>
+                <td style="width: 200px">{{walk.varQ1Status}}</td>
+                <td style="width: 200px">{{walk.varQ2Status}}</td>
+                <td style="width: 200px">{{walk.varQ3Status}}</td>
+                <td style="width: 200px">{{walk.varQ4Status}}</td>
+                <td style="width: 200px">{{walk.varQ5Status}}</td>
+                <td style="width: 200px">{{walk.varQ6Status}}</td>
+                <td style="width: 200px">{{walk.varQ7Status}}</td>
+                <td style="width: 200px">{{walk.varQ8Status}}</td>
+                <td style="width: 200px">{{walk.varQ9Status}}</td>
+                <td style="width: 200px">{{walk.varQ10Status}}</td>
+                <td style="width: 200px">{{walk.dteCreateOn | date: 'dd/MM/yyyy'}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns.length">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</mat-card>
+
+
+<p-dialog modal="true" appendTo="body" [positionTop]="50" header="Image Attachments - {{imageModalTitle}}"
+    [(visible)]="showImageModal" [contentStyle]="{'max-height':'80vh'}" [style]="{ width: '700px' }">
+    <div class="col-md-12">
+        <h5 *ngIf="SafetyWalkImgDT.length == 0">No Attachments Available.</h5>
+        <table>
+            <tr *ngFor="let image of SafetyWalkImgDT">
+                <img [src]="image.imageUrl" width="300">
+            </tr>
+        </table>
+    </div>
+</p-dialog>

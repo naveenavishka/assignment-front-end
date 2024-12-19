@@ -1,0 +1,63 @@
+<!-- <p-card style="padding: 20px;">
+    <div class="col-md-12">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>hello</p>
+                        <div>
+                            <p-dropdown [style]="{'width':'100%'}" [options]="clusterDataList" name="varClusterCode"
+                            [(ngModel)]="varClusterCode" (ngModelChange)="onClusterChange()" [filter]="true"
+                            filterBy="label"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 mt-2">
+                <div class="row mt-4">
+                    <div class="col-md-6">
+
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</p-card> -->
+
+
+
+
+
+<p-card styleClass="mt-4">
+
+    <p-table styleClass="p-datatable-gridlines" [value]="clusterList" [tableStyle]="{'min-width': '60rem'}">
+        
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Cluster Name</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cluster>
+            <tr>
+                <td>{{cluster.varClusterCode}}</td>
+                <td>{{cluster.varClusterName}}</td>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{clusterList ? clusterList.length : 0 }} Clusters.
+            </div>
+        </ng-template>
+    </p-table>
+</p-card>
+
+
+<p-confirmDialog [style]="{ width: '450px' }" />
