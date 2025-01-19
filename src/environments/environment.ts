@@ -13,6 +13,6 @@ export const environment = {
   //apiUrl: 'https://alert.hayleysadvantis.com/alert.api' //'https://corebrainwm.com/alert.api',
 
   // TestAPIURL
-  //  apiUrl: 'http://localhost:30235',
-   apiUrl: 'https://alert.hayleysadvantis.com/alert.api',
+   apiUrl: 'https://localhost:7052',
+  //  apiUrl: 'https://alert.hayleysadvantis.com/alert.api',
 };

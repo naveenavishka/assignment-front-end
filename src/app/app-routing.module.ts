@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 const routes: Routes = [
   {
-    path: '', redirectTo: 'home/hoc-dashboard', pathMatch: 'full',
+    path: '', redirectTo: 'home/mc-computer-dashboard', pathMatch: 'full',
   },
   {
     path: 'home', component: HomeComponent, pathMatch: 'full',

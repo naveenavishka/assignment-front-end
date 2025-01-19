@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
@@ -56,21 +55,7 @@ export class LoginComponent implements OnInit {
     // this.messagePrivate.add({ severity: 'error', summary: 'email required', detail: 'Please enter an email address', life: 3000 });
     console.log(result)
     return
-    const user = new User
-
-    user.UserName = "ADMIN";
-    user.UserCode = "ADMIN";
-    user.WHCode = "ADM";
-    user.CompCode = "ADV";
-    user.WHName = "ADV";
-    user.CompName = "MIT";
-    user.UserRoleName = "ADMIN";
-    user.TokenGenDateTime = new Date();
-    localStorage.setItem('currentUser', JSON.stringify(user));
-
-    this.router.navigate(['home/dashboard']);
-    return
-
+    
     // this.authService.login(this.username, this.password).subscribe(response => {
 
     //   this.authService.GetLoginDetails().subscribe(data => {

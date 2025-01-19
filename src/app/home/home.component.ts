@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from './components/header/header.component';
-import { MasterService } from '../services/master.service';
-import { Cluster } from '../models/cluster';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers:[MasterService]
 })
 export class HomeComponent implements OnInit {
   sidebarOpened = true;
@@ -15,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   headerVisibility:boolean = true
 
-  constructor(private masterService:MasterService, ) {
+  constructor() {
     this.screenWidth = window.innerWidth;
   }
 

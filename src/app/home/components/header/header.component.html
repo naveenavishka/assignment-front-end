@@ -1,26 +1,13 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleSideBar()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>A L E R T</span>
-
-
-    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
-      <div class="row align-items-center">
-        <p class="hf-11 mt-2">{{userDisplayName}}</p>
-        <button mat-button [matMenuTriggerFor]="menu2">
-          <mat-icon>person_outline</mat-icon>
-        </button>
-
-        <mat-menu #menu2="matMenu">
-          <button mat-menu-item (click)="onSignout()">
-            <mat-icon>exit_to_app</mat-icon>
-            Sign Out
-          </button>
-        </mat-menu>
-      </div>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button pButton type="button" icon="pi pi-bars" class="p-mr-2"></button>
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" placeholder="Search">
+    </span>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-text p-mr-2"></button>
+    <button pButton type="button" icon="pi pi-sign-out" class="p-button-rounded p-button-text" ></button>
+  </div>
+</p-toolbar>

@@ -14,28 +14,36 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeRoutingModule } from './home-routing.module';
-import { OrganizationstructureComponent } from './organizationstructure/organizationstructure.component';
-import { ClusterComponent } from './organizationstructure/cluster/cluster.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {  TabMenuModule } from 'primeng/tabmenu';
 import { BadgeModule } from 'primeng/badge';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { ImportsModule } from '../utils/imports';
-import { SbuComponent } from './organizationstructure/sbu/sbu.component';
-import { SitesComponent } from './organizationstructure/sites/sites.component';
-import { OrganizationstructureuserComponent } from './organizationstructureusers/organizationstructureusers.component';
-import { SitesusersComponent } from './organizationstructureusers/sitesusers/sitesusers.component';
-import { SbuusersComponent } from './organizationstructureusers/sbuusers/sbuusers.component';
-import { ClusterusersComponent } from './organizationstructureusers/clusterusers/clusterusers.component';
-import { HocdashboardComponent } from './hocdashboard/hocdashboard.component';
-import { IncidentDashboardComponent } from './hocdashboard/incident-dashboard/incident-dashboard.component';
-import { SuggestionDashboardComponent } from './hocdashboard/suggestion-dashboard/suggestion-dashboard.component';
-import { SafetyWalkDashboardComponent } from './hocdashboard/safety-walk-dashboard/safety-walk-dashboard.component';
-import { UsermanagementComponent } from './usermanagement/usermanagement.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductsComponent } from './products/products.component';
+import { ComponentFactoryDirectives } from './components/directives/componentFactorydirects';
+import { ProductListComponent } from '../features/product-list/product-list.component';
+import { ProductCreateComponent } from '../features/product-create/product-create.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerCreateComponent } from '../features/customer-create/customer-create.component';
+import { CustomerListComponent } from '../features/customer-list/customer-list.component';
+import { SalesComponent } from './sales/sales.component';
+import { PosUiComponent } from '../features/pos-ui/pos-ui.component';
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, SidebarComponent, OrganizationstructureComponent, OrganizationstructureuserComponent, ClusterComponent, SbuComponent, SitesComponent, SitesusersComponent, SbuusersComponent, ClusterusersComponent, HocdashboardComponent, IncidentDashboardComponent, SuggestionDashboardComponent, SafetyWalkDashboardComponent, UsermanagementComponent],
+  declarations: [HomeComponent, HeaderComponent, SidebarComponent,  DashboardComponent, ProductsComponent, 
+    ComponentFactoryDirectives,
+    ProductListComponent,
+    ProductCreateComponent,
+    CustomerComponent,
+    CustomerCreateComponent,
+    CustomerListComponent,
+    
+    SalesComponent,
+
+    PosUiComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,

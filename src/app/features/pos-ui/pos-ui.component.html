@@ -1,0 +1,255 @@
+<section class="section-content padding-y-sm bg-default ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 card padding-y-sm card ">
+                <span id="items">
+
+
+
+
+
+
+                    <div class="d-flex flex-wrap justify-content-start">
+                        <div class="col-6 col-md-4 col-lg-3 p-2" *ngFor="let product of products">
+                            <figure class="card card-product" (click)="addProduct(product)">
+                                <span class="badge-new" *ngIf="product.isNew"> NEW </span>
+
+                                <div class="img-wrap">
+                                    <td><img [src]="'https://localhost:7052/' + product.image" [alt]="product.name"
+                                            width="100" class="shadow-4" /></td>
+                                </div>
+
+                                <figcaption class="info-wrap">
+                                    <a class="title">{{ product.productName }}</a>
+                                    <div class="action-wrap">
+                                        <a class="btn btn-primary btn-sm float-right">
+                                            <i class="fa fa-cart-plus"></i> Add
+                                        </a>
+                                        <div class="price-wrap h5">
+                                            <span class="price-new">${{ product.sellingPrice }}</span>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+
+
+                </span>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <span id="cart">
+                        <table class="table table-hover shopping-cart-wrap">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th scope="col">Item</th>
+                                    <th scope="col" width="120">Qty</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" class="text-right" width="200">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let cartItem of productCart">
+                                <tr>
+                                    <td>
+                                        <figure class="media">
+
+                                            <figcaption class="media-body">
+                                                <h6 class="title text-truncate">
+                                                    {{getProductDetails(cartItem.ProductId).productName}}
+                                                    <!-- {{cartItem.ProductId}} -->
+                                                </h6>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="m-btn-group m-btn-group--pill btn-group mr-2" role="group"
+                                            aria-label="...">
+                                            <button (click)="productQTYSET(cartItem,'minus')" type="button"
+                                                class="m-btn btn btn-default" icon="pi pi-pencil">
+                                                <i class="pi pi-minus"></i>
+                                            </button>
+                                            <button type="button" class="m-btn btn btn-default" disabled>
+                                                {{cartItem.Qty}}
+                                            </button>
+                                            <button (click)="productQTYSET(cartItem,'plus')" type="button"
+                                                class="m-btn btn btn-default">
+                                                <i class="pi pi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">(RS) {{cartItem.Total}}</var>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="" class="btn btn-outline-danger">
+                                            <i class="pi pi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </span>
+                </div>
+                <div class="box">
+
+                    <dl class="dlist-align d-flex justify-between" style="justify-content: space-between;">
+                        <dt>Discount:</dt>
+                        <dd class="text-right"><a style="color: blue;" (click)="discountModal = true"> {{discountValue}}
+                                %</a></dd>
+                    </dl>
+                    <dl class="dlist-align d-flex justify-between" style="justify-content: space-between;">
+                        <dt>Sub Total:</dt>
+                        <dd class="text-right">(RS) {{getTotal()}}</dd>
+                    </dl>
+                    <dl class="dlist-align d-flex justify-between" style="justify-content: space-between;">
+                        <dt>Total: </dt>
+                        <dd class="text-right h4 b">(RS) {{getFinalTOtal()}} </dd>
+                    </dl>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a (click)="print()" class="btn  btn-default btn-error btn-lg btn-block"><i
+                                    class="fa fa-times-circle "></i> Cancel </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a (click)="paymentModel = true" class="btn  btn-primary btn-lg btn-block"><i
+                                    class="fa fa-shopping-bag"></i>
+                                Pay now </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<p-dialog header="Enter the discount" [modal]="true" [(visible)]="discountModal" [style]="{ width: '25rem' }">
+
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="discount " class="font-semibold w-6rem">discount %</label>
+        <input pInputText id="discount" class="flex-auto" autocomplete="off" [(ngModel)]="discountValue" />
+
+    </div>
+
+    <div class="flex justify-content-end gap-2">
+        <p-button label="close" severity="secondary" (onClick)="discountModal = false" />
+    </div>
+</p-dialog>
+
+<p-dialog header="Enter Payment" [modal]="true" [(visible)]="paymentModel" [style]="{ width: '25rem' }">
+
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="discount " class="font-semibold w-6rem">Customer paid:</label>
+        <input pInputText id="discount" [(ngModel)]="customerPaid" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="discount " class="font-semibold w-6rem">Total (RS):</label>
+        <input pInputText id="discount" [value]="getFinalTOtal()" class="flex-auto" disabled autocomplete="off" />
+    </div>
+
+
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="discount " class="font-semibold w-6rem">Balance:</label>
+        <input pInputText id="discount" class="flex-auto " [value]="customerPaid - getFinalTOtal()" disabled
+            autocomplete="off" />
+    </div>
+
+
+    <div class="flex align-items-center gap-3 mb-3">
+        <label for="customer" class="font-semibold w-6rem">Select Customer:</label>
+        <select id="customer" [(ngModel)]="selectedCustomer" >
+          <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.customerName }}</option>
+        </select>
+      </div>
+
+    <div class="flex justify-content-end gap-2">
+        <p-button label="save" severity="secondary" (onClick)="saveSale()" />
+    </div>
+</p-dialog>
+
+<div style="display: none;">
+<div id="print-section">
+    <!-- Invoice 1 - Bootstrap Brain Component -->
+    <section class="py-3 py-md-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+                    <div class="row gy-3 mb-3">
+                        <div class="col-6">
+                            <h2 class="text-uppercase text-endx m-0">Invoice</h2>
+                        </div>
+                        <div class="col-6">
+                            
+                        </div>
+                        <div class="col-12">
+                            <h4>From</h4>
+                            <address>
+                                <strong>MD COmputers</strong><br>
+                                Phone: 000-000-0000<br>
+                                Email: bla@blabla.com
+                            </address>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12 col-sm-6 col-md-8" *ngIf="selectedCustomer">
+                            <h4>Bill To</h4>
+                            <address>
+                                <strong>{{ getCustomer(selectedCustomer).customerName }}</strong><br>
+                                Phone: {{ getCustomer(selectedCustomer).customerPhone }} <br>
+                                Email: {{ getCustomer(selectedCustomer).customerEmail }}
+                            </address>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead >
+                                        <tr>
+                                            <th scope="col" class="text-uppercase">Product Name</th>
+                                            <th scope="col" class="text-uppercase">QTY</th>
+                                            <th scope="col" class="text-uppercase text-end">Unit Price</th>
+                                            <th scope="col" class="text-uppercase text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider" *ngFor="let cartItem of productCart">
+                                        <tr>
+                                            <td> {{getProductDetails(cartItem.ProductId).productName}}</td>
+                                            <td class="text-end"> {{cartItem.Qty}}</td>
+                                            <td class="text-end"> (RS) {{cartItem.PriceItem}} </td>
+                                            <td class="text-end"> (RS) {{cartItem.Total}} </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td colspan="3" class="text-end">Discount (%)</td>
+                                            <td class="text-end">{{discountValue}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-end">sub total</td>
+                                            <td class="text-end">(RS) {{getTotal()}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="3" class="text-uppercase text-end">Total</th>
+                                            <td class="text-end">
+                                                (RS) {{getFinalTOtal()}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>

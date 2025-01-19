@@ -9,13 +9,20 @@ import { HeaderComponent } from './home/components/header/header.component';
 import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
-import { ToeknInterceptor } from './utilservices/token.interceptor';
+// import { ToeknInterceptor } from './utilservices/token.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+// import { PosUiComponent } from './features/pos-ui/pos-ui.component';
+// import { CustomerListComponent } from './features/customer-list/customer-list.component';
+// import { CustomerCreateComponent } from './features/customer-create/customer-create.component';
+// import { ProductListComponent } from './features/product-list/product-list.component';
+// import { ProductCreateComponent } from './features/product-create/product-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    // PosUiComponent,
+
     
   ],
   imports: [
@@ -29,7 +36,7 @@ import { ToastModule } from 'primeng/toast';
     ToastModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:ToeknInterceptor, multi:true},
+    // {provide:HTTP_INTERCEPTORS, useClass:ToeknInterceptor, multi:true},
     MessageService
   ],
   bootstrap: [AppComponent],
