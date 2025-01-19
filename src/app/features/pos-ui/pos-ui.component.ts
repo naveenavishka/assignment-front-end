@@ -134,8 +134,10 @@ export class PosUiComponent {
         if(response.id>0){
           this.productCart = this.productCart.map(product => ({
             ...product,
-            SalesId: response.id, 
+            SalesId: response.id
           }));
+          console.log()
+          this.saleDetails = response 
           
           this.salesService.createSaleDetails(this.productCart).subscribe({
             next: (response) => {
