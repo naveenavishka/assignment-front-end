@@ -6,3 +6,4 @@
 ![customer](https://github.com/user-attachments/assets/374c9fec-6686-4c50-bdd1-df8992fcafdb)
 ![create-product](https://github.com/user-attachments/assets/bdbb1170-c695-4924-ac2c-16c3d50c018d)
 ![create-customer](https://github.com/user-attachments/assets/acc088b0-044d-43a7-8c90-cafe9cd66719)
+![pos print](https://github.com/user-attachments/assets/874c1c47-90f5-48f8-bdb4-3b431c5d5650)
