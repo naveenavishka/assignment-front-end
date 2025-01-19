@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LUser } from 'src/app/models/LUser';
+
 
 @Component({
   selector: 'app-sidebar',

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
@@ -11,7 +12,9 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent {
   products!: Product[];
 
-  constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService
+    , private router: Router
+  ) { }
 
   ngOnInit() {
     this.getProductListAction()
@@ -54,5 +57,9 @@ export class ProductListComponent {
 
       },
     });
+  }
+
+  redirectToCreateProduct() {
+    this.router.navigate(["/home/product/create"])
   }
 }

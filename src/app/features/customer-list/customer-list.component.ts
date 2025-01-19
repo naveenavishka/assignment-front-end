@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customer.service';
@@ -12,7 +13,9 @@ import { CustomersService } from 'src/app/services/customer.service';
 export class CustomerListComponent {
   customers!: Customer[];
 
-  constructor(private customersService: CustomersService, private messageService:MessageService, private confirmationService:ConfirmationService) { }
+  constructor(private customersService: CustomersService, private messageService:MessageService, private confirmationService:ConfirmationService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.getCustomerListAction()
@@ -66,5 +69,9 @@ export class CustomerListComponent {
 
       },
     });
+  }
+
+  redirectToCreateCustomer(){
+    this.router.navigate(['/home/customers/create']);
   }
 }

@@ -12,6 +12,7 @@ import { LoginModule } from './login/login.module';
 // import { ToeknInterceptor } from './utilservices/token.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ToeknInterceptor } from './utilservices/token.interceptor';
 // import { PosUiComponent } from './features/pos-ui/pos-ui.component';
 // import { CustomerListComponent } from './features/customer-list/customer-list.component';
 // import { CustomerCreateComponent } from './features/customer-create/customer-create.component';
@@ -36,7 +37,7 @@ import { ToastModule } from 'primeng/toast';
     ToastModule
   ],
   providers: [
-    // {provide:HTTP_INTERCEPTORS, useClass:ToeknInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:ToeknInterceptor, multi:true},
     MessageService
   ],
   bootstrap: [AppComponent],

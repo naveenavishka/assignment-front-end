@@ -25,7 +25,7 @@ const routes: Routes = [
             }
           ],
         children: [
-            { path: '', redirectTo:"home/mc-computer-dashboard", pathMatch: 'full' },
+            { path: '', redirectTo:"home/product", pathMatch: 'full' },
             { path: 'mc-computer-dashboard', component: DashboardComponent, pathMatch: 'full' },
             { path: 'product', component: ProductsComponent, pathMatch: 'full' },
             { path: 'product/:component', component: ProductsComponent, pathMatch: 'full' },

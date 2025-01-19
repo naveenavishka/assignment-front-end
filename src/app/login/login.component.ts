@@ -15,8 +15,8 @@ import { MessagesModule } from 'primeng/messages';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  username!: string;
+  password!: string;
   message: string | null | undefined;
 
   constructor(private router: Router, private authService: AuthService, private messagePrivate: MessageService, private route: ActivatedRoute) {
@@ -25,14 +25,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.messagePrivate.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' })
-  }
-
-  getToek() {
-    const result = this.authService.getLoginDetails()
-    console.log(result)
-
-    this.authService.getToken()
   }
 
   LoginAction(loginForm: NgForm) {
@@ -45,45 +37,14 @@ export class LoginComponent implements OnInit {
       return
     }
 
-    const result = this.authService.login({ varUserName: this.username, varPassword: this.password })
-    // this.messagePrivate.add({ severity: 'error', summary: 'email required', detail: 'Please enter an email address', life: 3000 });
+    const result = this.authService.login({ username: this.username, password: this.password })
     console.log(result)
     return
   }
   onLogin() {
-    const result = this.authService.login({ varUserName: this.username, varPassword: this.password })
-    // this.messagePrivate.add({ severity: 'error', summary: 'email required', detail: 'Please enter an email address', life: 3000 });
+    const result = this.authService.login({ username: this.username, password: this.password })
     console.log(result)
     return
-    
-    // this.authService.login(this.username, this.password).subscribe(response => {
-
-    //   this.authService.GetLoginDetails().subscribe(data => {
-
-    //     const user = JSON.parse(localStorage.getItem('currentUser'));
-
-    //     user.UserName = data.LoginInfor.UserName;
-    //     user.UserCode = data.LoginInfor.UserCode;
-    //     user.WHCode = data.LoginInfor.WHCode;
-    //     user.CompCode = data.LoginInfor.CompCode;
-    //     user.WHName = data.LoginInfor.WHName;
-    //     user.CompName = data.LoginInfor.CompName;
-    //     user.UserRoleName = data.LoginInfor.UserRoleName;
-    //     user.TokenGenDateTime = new Date();
-
-    //     localStorage.setItem('currentUser', JSON.stringify(user));
-
-    //     this.router.navigate(['home/dashboard']);
-
-    //   });
-
-    // }, (error) => {
-
-    //   const errorMessage = error === 'Bad Request' ? 'Username or Password is Incorrect!' : 'Unable to Process the Request';
-
-    //   this.toastr.error(errorMessage, 'Alert - Sign In');
-
-    // });
 
   }
 

@@ -1,13 +1,12 @@
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <button pButton type="button" icon="pi pi-bars" class="p-mr-2"></button>
+    
     <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input pInputText type="text" placeholder="Search">
+      <h1>MC Computers</h1>
     </span>
   </div>
   <div class="p-toolbar-group-right">
-    <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-text p-mr-2"></button>
-    <button pButton type="button" icon="pi pi-sign-out" class="p-button-rounded p-button-text" ></button>
+    <!-- <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-text p-mr-2"></button> -->
+    <button pButton type="button" (click)="onSignout()" icon="pi pi-sign-out" class="p-button-rounded p-button-text" ></button>
   </div>
 </p-toolbar>

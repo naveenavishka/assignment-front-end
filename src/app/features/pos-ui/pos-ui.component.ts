@@ -178,5 +178,8 @@ export class PosUiComponent {
       }
     } 
   }
+  cancel(){
+    this.productCart = []
+  }
 }
 // Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=assignment;User Id=sa;Password=Admin@123;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables Sale -Force

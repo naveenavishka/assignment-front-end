@@ -21,10 +21,6 @@ export class HeaderComponent implements OnInit {
     
   }
 
-  toggleSideBar() {
-    this.toggleSideBarEmitter.emit();
-
-  }
 
   onSignout() {
 
